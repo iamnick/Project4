@@ -116,6 +116,20 @@ var twoDecimalPlaces = function (num) {
 	return num.toFixed(2);
 }
 
+// Fuzzy-match a number: is the number above or below a number within a certain percent?
+var fuzzyMatchNum = function (num, threshold, percent) {
+	var min = (threshold - (threshold * percent)),
+		max = (threshold * (1 + percent))
+	;
+	
+	if (num >= min && num <= max) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 
 // Test Section
 //var phoneNumber = "1-860-933-1964";
@@ -135,8 +149,11 @@ var twoDecimalPlaces = function (num) {
 //;
 //console.log(swapSeparator(list, ",", newSep));
 
-var cash = 10.2;
-console.log(twoDecimalPlaces(cash));
+//var cash = 10.2;
+//console.log(twoDecimalPlaces(cash));
+
+var n = 32, t = 30, p = .10;
+console.log(fuzzyMatchNum(n, t, p));
 
 
 //alert("JavaScript works!");
