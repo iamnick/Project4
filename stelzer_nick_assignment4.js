@@ -71,13 +71,36 @@ var isValidEmail = function (string) {
 
 // Is the string a URL? (Does it start with http: or https:?)
 var isValidURL = function (string) {
-	console.log(string.substring(0,8));
 	// Checks for http:// or https:// prefix
 	if ((string.substring(0,7) == "http://") || (string.substring(0,8) == "https://")) {
 		return true;
 	} else {
 		return false;
 	}
+}
+
+// Title-case a string
+var titleCase = function (string) {
+	// Change entire string to lowercase
+	string = string.toLowerCase();
+	var newString = "";
+	
+	console.log(string);
+	// Search for spaces in string, capitalize next character if found
+	for (var i = 0; i < string.length; i++) {
+		if (string.charAt(i) == " ") {
+			newString += string.charAt(i);
+			newString += string.charAt(i+1).toUpperCase();
+			i++;
+		} else {
+			newString += string.charAt(i);
+		}
+	}
+	
+	// Capitalize first letter of string
+	newString = newString.slice(0,1).toUpperCase() + newString.slice(1);
+	
+	return newString;
 }
 
 // Test Section
@@ -87,11 +110,10 @@ var isValidURL = function (string) {
 //var eMail = "iamnick@comcast.net";
 //console.log(isValidEmail(eMail));
 
-var URL = "https://www.pandora.com/";
-console.log(isValidURL(URL));
+//var URL = "https://www.pandora.com/";
+//console.log(isValidURL(URL));
 
-//1-860-684-7818	14 char
-//860-684-7818	12 char
-//18606847818		11 char
-//8606847818		10 char
+var string = "hello My name is NICK";
+console.log(titleCase(string));
+
 //alert("JavaScript works!");
