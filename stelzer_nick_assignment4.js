@@ -105,10 +105,17 @@ var titleCase = function (string) {
 
 // List separator swap
 var swapSeparator = function (list, curSep, newSep) {
+	// Create dynamic reg exp
 	var re = new RegExp(curSep,"g");
 	list = list.replace(re, newSep);
 	return list;
 }
+
+// Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10
+var twoDecimalPlaces = function (num) {
+	return num.toFixed(2);
+}
+
 
 // Test Section
 //var phoneNumber = "1-860-933-1964";
@@ -123,9 +130,13 @@ var swapSeparator = function (list, curSep, newSep) {
 //var string = "hello My name is NICK";
 //console.log(titleCase(string));
 
-var list = "Bananas,Oranges,Apples",
-	newSep = ":"
-;
-console.log(swapSeparator(list, ",", newSep));
+//var list = "Bananas,Oranges,Apples",
+//	newSep = ":"
+//;
+//console.log(swapSeparator(list, ",", newSep));
+
+var cash = 10.2;
+console.log(twoDecimalPlaces(cash));
+
 
 //alert("JavaScript works!");
