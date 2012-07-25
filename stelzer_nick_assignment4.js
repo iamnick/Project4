@@ -103,6 +103,13 @@ var titleCase = function (string) {
 	return newString;
 }
 
+// List separator swap
+var swapSeparator = function (list, curSep, newSep) {
+	var re = new RegExp(curSep,"g");
+	list = list.replace(re, newSep);
+	return list;
+}
+
 // Test Section
 //var phoneNumber = "1-860-933-1964";
 //console.log(isValidPhoneNumber(phoneNumber));
@@ -113,7 +120,12 @@ var titleCase = function (string) {
 //var URL = "https://www.pandora.com/";
 //console.log(isValidURL(URL));
 
-var string = "hello My name is NICK";
-console.log(titleCase(string));
+//var string = "hello My name is NICK";
+//console.log(titleCase(string));
+
+var list = "Bananas,Oranges,Apples",
+	newSep = ":"
+;
+console.log(swapSeparator(list, ",", newSep));
 
 //alert("JavaScript works!");
