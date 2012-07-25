@@ -69,6 +69,16 @@ var isValidEmail = function (string) {
 	}
 }
 
+// Is the string a URL? (Does it start with http: or https:?)
+var isValidURL = function (string) {
+	console.log(string.substring(0,8));
+	// Checks for http:// or https:// prefix
+	if ((string.substring(0,7) == "http://") || (string.substring(0,8) == "https://")) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 // Test Section
 //var phoneNumber = "1-860-933-1964";
@@ -76,6 +86,9 @@ var isValidEmail = function (string) {
 
 //var eMail = "iamnick@comcast.net";
 //console.log(isValidEmail(eMail));
+
+var URL = "https://www.pandora.com/";
+console.log(isValidURL(URL));
 
 //1-860-684-7818	14 char
 //860-684-7818	12 char
