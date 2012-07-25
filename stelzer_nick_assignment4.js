@@ -2,8 +2,7 @@
 
 // Does a string follow a 123-456-7890 pattern like a phone number?
 var isValidPhoneNumber = function (string) {
-	var validLength = [10, 11, 12, 14];		// Lengths of a phone number string with/without area code/dashes
-	
+
 	// Check to see if string is a valid length to be a phone number 
 	switch(string.length) {
 		case 10:
@@ -46,9 +45,37 @@ var isValidPhoneNumber = function (string) {
 			break;
 	}	
 }
-var phoneNumber = "1-800-684-7818";
-console.log("String: " + phoneNumber);
-console.log(isValidPhoneNumber(phoneNumber));
+
+// Does a string follow an aaa@bbb.ccc pattern like an email address?
+var isValidEmail = function (string) {
+	var atSymbols = [];
+	
+	// Check for just 1 @ character
+	for (var i = 0; i < (string.length); i++) {
+		if (string.charAt(i) == "@") {
+			atSymbols.push(i);
+		}
+	}
+	
+	// If only 1 @ character, make sure the @ isn't first char and check for a .aaa or .bb type suffix
+	if (atSymbols.length == 1 && atSymbols[0] != 0) {
+		if (string.charAt(string.length - 3) == "." || string.charAt(string.length - 4) == ".") {
+			return true;
+		} else {
+			return false;	// no period found for a domain suffix, invalid e-mail format
+		}
+	} else {
+		return false;	// @ is first char, or there are multiple @ symbols, invalid e-mail format
+	}
+}
+
+
+// Test Section
+//var phoneNumber = "1-860-933-1964";
+//console.log(isValidPhoneNumber(phoneNumber));
+
+//var eMail = "iamnick@comcast.net";
+//console.log(isValidEmail(eMail));
 
 //1-860-684-7818	14 char
 //860-684-7818	12 char
