@@ -220,6 +220,17 @@ var totalArrayNums = function (array) {
 	return total;
 }
 
+// Given an array of objects and the name of a key, return the array sorted by the value of that key in each of the objects
+var sortArrayByKey = function (array, key) {
+	var compareFunction = function (a, b) {
+		var x = a[key]; var y = b[key];
+		return x - y;
+	}
+	array.sort(compareFunction);	
+	return array;
+}
+
+
 // Test Section
 //var phoneNumber = "1-860-933-1964";
 //console.log(isValidPhoneNumber(phoneNumber));
@@ -254,5 +265,9 @@ var totalArrayNums = function (array) {
 //var array = [78, 90, 12, 34, 56, 0];
 //console.log(arraySearch(array, 50));
 
-var array = [1, "A", 2, [], 3, true, 4, {}];
-console.log(totalArrayNums(array));
+//var array = [1, "A", 2, [], 3, true, 4, {}];
+//console.log(totalArrayNums(array));
+
+var objArray = [{a:2,b:1,c:2},{a:3,b:3,c:1},{a:1,b:2,c:3}];
+var key = "b";
+console.log(sortArrayByKey(objArray, key));
