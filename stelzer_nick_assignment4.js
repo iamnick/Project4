@@ -184,6 +184,12 @@ var timeToDate = function (currentDate, futureDate) {
 	return time;
 }
 
+// Given a string version of a number such as "42", return the value as an actual Number, such as 42.
+var makeNumber = function (string) {
+	return parseFloat(string);
+}
+
+
 // Test Section
 //var phoneNumber = "1-860-933-1964";
 //console.log(isValidPhoneNumber(phoneNumber));
@@ -208,8 +214,12 @@ var timeToDate = function (currentDate, futureDate) {
 //var n = 32, t = 30, p = .10;
 //console.log(fuzzyMatchNum(n, t, p));
 
-var today = new Date();
-var future = new Date("December 26, 2111 2:22:22");
-console.log(timeToDate(today, future));
+//var today = new Date();
+//var future = new Date("December 26, 2111 2:22:22");
+//console.log(timeToDate(today, future));
+
+var string = "148";
+console.log(makeNumber(string));
+
 
 //alert("JavaScript works!");
