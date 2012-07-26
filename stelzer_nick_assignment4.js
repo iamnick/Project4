@@ -71,6 +71,9 @@ var isValidEmail = function (string) {
 
 // Is the string a URL? (Does it start with http: or https:?)
 var isValidURL = function (string) {
+	// Change string to all lowercase
+	string = string.toLowerCase();
+
 	// Checks for http:// or https:// prefix
 	if ((string.substring(0,7) == "http://") || (string.substring(0,8) == "https://")) {
 		return true;
@@ -132,14 +135,11 @@ var fuzzyMatchNum = function (num, threshold, percent) {
 // Find the number of hours or days difference between two dates.
 var timeToDate = function (currentDate, futureDate) {
 	var time = [0, 0];		// days, hours
-	var temp = 0;
 	
 	// Find number of milliseconds between each date
 	var ms = (futureDate.getTime() - currentDate.getTime());
 	time[0] = Math.floor(ms/(1000*60*60*24));
 	time[1] = Math.ceil((ms%(1000*60*60*24)) / (1000*60*60));
-	
-	console.log("DAYS: " + time[0] + " HOURS: " + time[1]);
 		
 	return time;
 }
@@ -199,7 +199,7 @@ var sortArrayByKey = function (array, key) {
 //var eMail = "iamnick@comcast.net";
 //console.log(isValidEmail(eMail));
 
-//var URL = "https://www.pandora.com/";
+//var URL = "Http://www.pandora.com/";
 //console.log(isValidURL(URL));
 
 //var string = "hello My name is NICK";
@@ -216,9 +216,9 @@ var sortArrayByKey = function (array, key) {
 //var n = 32, t = 30, p = .10;
 //console.log(fuzzyMatchNum(n, t, p));
 
-var today = new Date();
-var future = new Date("July 30, 2012");
-console.log(timeToDate(today, future));
+//var today = new Date();
+//var future = new Date("July 30, 2012");
+//console.log(timeToDate(today, future));
 
 //var string = "148";
 //console.log(makeNumber(string));
