@@ -205,6 +205,21 @@ var arraySearch = function (array, num) {
 	}
 }
 
+// Find the total value of just the numbers in an array, even if some of the items are not numbers.
+var totalArrayNums = function (array) {
+	
+	// Loop through each array element, determine if it's a number, then add to a total
+	var total = 0;
+	
+	for (var i = 0; i < array.length; i++) {
+		temp = parseFloat(array[i]);
+		if (!isNaN(temp)) {
+			total += temp;
+		}
+	}
+	return total;
+}
+
 // Test Section
 //var phoneNumber = "1-860-933-1964";
 //console.log(isValidPhoneNumber(phoneNumber));
@@ -236,5 +251,8 @@ var arraySearch = function (array, num) {
 //var string = "148";
 //console.log(makeNumber(string));
 
-var array = [78, 90, 12, 34, 56, 0];
-console.log(arraySearch(array, 50));
+//var array = [78, 90, 12, 34, 56, 0];
+//console.log(arraySearch(array, 50));
+
+var array = [1, "A", 2, [], 3, true, 4, {}];
+console.log(totalArrayNums(array));
