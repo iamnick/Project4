@@ -129,7 +129,60 @@ var fuzzyMatchNum = function (num, threshold, percent) {
 	}
 }
 
+// Find the number of hours or days difference between two dates.
+var timeToDate = function (currentDate, futureDate) {
+	var time = {
+		"days": 0,
+		"hours": 0,
+		"minutes": 0,
+		"seconds": 0
+	}
+	
 
+	// Calculate differences and put them into the time object
+	time.days += (futureDate.getFullYear() - currentDate.getFullYear()) * 365;
+	time.hours += (futureDate.getHours() - currentDate.getHours());
+	time.minutes += (futureDate.getMinutes() - currentDate.getMinutes());
+	time.seconds += (futureDate.getSeconds() - currentDate.getSeconds());
+	
+	// Add time til end of first year
+	for (var i = (currentDate.getMonth() + 1); i <= 11; i++) {
+		switch(i) {
+			case 3, 5, 8, 10:	// April, June, September, November
+				time.days += 30;
+				break;
+			case 1:				// February
+				time.days += 28;
+				break;
+			default:			
+				time.days += 31;
+				break;
+		}
+	}
+	
+	// Loop through each year and check for a Feb 29th (leap year), add days accordingly
+	for (var j = currentDate.getFullYear(); j <= futureDate.getFullYear(); j++) {
+		tempDate = new Date(j,1,29);
+		if (tempDate.getDate() == 29) {
+			time.days++;
+		}
+	}	
+
+	// Check for negative values, and adjust accordingly
+	if (time.hours < 0) {
+		time.hours += 24;
+		time.days--;
+	}
+	if (time.minutes < 0) {
+		time.minutes += 60;
+		time.hours--;
+	}
+	if (time.seconds < 0) {
+		time.seconds += 60;
+		time.minutes--;
+	}
+	return time;
+}
 
 // Test Section
 //var phoneNumber = "1-860-933-1964";
@@ -152,8 +205,11 @@ var fuzzyMatchNum = function (num, threshold, percent) {
 //var cash = 10.2;
 //console.log(twoDecimalPlaces(cash));
 
-var n = 32, t = 30, p = .10;
-console.log(fuzzyMatchNum(n, t, p));
+//var n = 32, t = 30, p = .10;
+//console.log(fuzzyMatchNum(n, t, p));
 
+var today = new Date();
+var future = new Date("December 26, 2111 2:22:22");
+console.log(timeToDate(today, future));
 
 //alert("JavaScript works!");
