@@ -189,6 +189,21 @@ var makeNumber = function (string) {
 	return parseFloat(string);
 }
 
+// Find the smallest value in an array that is greater than a given number
+var arraySearch = function (array, num) {
+	// First, sort the array from smallest value to largest
+	var compareFunction = function (a, b) {
+		return a - b;
+	}
+	array.sort(compareFunction);
+	
+	// Loop through each array element until you find one greater than 'num'
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] > num) {
+			return array[i];
+		}
+	}
+}
 
 // Test Section
 //var phoneNumber = "1-860-933-1964";
@@ -218,8 +233,8 @@ var makeNumber = function (string) {
 //var future = new Date("December 26, 2111 2:22:22");
 //console.log(timeToDate(today, future));
 
-var string = "148";
-console.log(makeNumber(string));
+//var string = "148";
+//console.log(makeNumber(string));
 
-
-//alert("JavaScript works!");
+var array = [78, 90, 12, 34, 56, 0];
+console.log(arraySearch(array, 50));
