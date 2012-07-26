@@ -131,56 +131,16 @@ var fuzzyMatchNum = function (num, threshold, percent) {
 
 // Find the number of hours or days difference between two dates.
 var timeToDate = function (currentDate, futureDate) {
-	var time = {
-		"days": 0,
-		"hours": 0,
-		"minutes": 0,
-		"seconds": 0
-	}
+	var time = [0, 0];		// days, hours
+	var temp = 0;
 	
-
-	// Calculate differences and put them into the time object
-	time.days += (futureDate.getFullYear() - currentDate.getFullYear()) * 365;
-	time.hours += (futureDate.getHours() - currentDate.getHours());
-	time.minutes += (futureDate.getMinutes() - currentDate.getMinutes());
-	time.seconds += (futureDate.getSeconds() - currentDate.getSeconds());
+	// Find number of milliseconds between each date
+	var ms = (futureDate.getTime() - currentDate.getTime());
+	time[0] = Math.floor(ms/(1000*60*60*24));
+	time[1] = Math.ceil((ms%(1000*60*60*24)) / (1000*60*60));
 	
-	// Add time til end of first year
-	for (var i = (currentDate.getMonth() + 1); i <= 11; i++) {
-		switch(i) {
-			case 3, 5, 8, 10:	// April, June, September, November
-				time.days += 30;
-				break;
-			case 1:				// February
-				time.days += 28;
-				break;
-			default:			
-				time.days += 31;
-				break;
-		}
-	}
-	
-	// Loop through each year and check for a Feb 29th (leap year), add days accordingly
-	for (var j = currentDate.getFullYear(); j <= futureDate.getFullYear(); j++) {
-		tempDate = new Date(j,1,29);
-		if (tempDate.getDate() == 29) {
-			time.days++;
-		}
-	}	
-
-	// Check for negative values, and adjust accordingly
-	if (time.hours < 0) {
-		time.hours += 24;
-		time.days--;
-	}
-	if (time.minutes < 0) {
-		time.minutes += 60;
-		time.hours--;
-	}
-	if (time.seconds < 0) {
-		time.seconds += 60;
-		time.minutes--;
-	}
+	console.log("DAYS: " + time[0] + " HOURS: " + time[1]);
+		
 	return time;
 }
 
@@ -232,6 +192,7 @@ var sortArrayByKey = function (array, key) {
 
 
 // Test Section
+
 //var phoneNumber = "1-860-933-1964";
 //console.log(isValidPhoneNumber(phoneNumber));
 
@@ -255,9 +216,9 @@ var sortArrayByKey = function (array, key) {
 //var n = 32, t = 30, p = .10;
 //console.log(fuzzyMatchNum(n, t, p));
 
-//var today = new Date();
-//var future = new Date("December 26, 2111 2:22:22");
-//console.log(timeToDate(today, future));
+var today = new Date();
+var future = new Date("July 30, 2012");
+console.log(timeToDate(today, future));
 
 //var string = "148";
 //console.log(makeNumber(string));
@@ -268,6 +229,6 @@ var sortArrayByKey = function (array, key) {
 //var array = [1, "A", 2, [], 3, true, 4, {}];
 //console.log(totalArrayNums(array));
 
-var objArray = [{a:2,b:1,c:2},{a:3,b:3,c:1},{a:1,b:2,c:3}];
-var key = "b";
-console.log(sortArrayByKey(objArray, key));
+//var objArray = [{a:2,b:1,c:2},{a:3,b:3,c:1},{a:1,b:2,c:3}];
+//var key = "b";
+//console.log(sortArrayByKey(objArray, key));
