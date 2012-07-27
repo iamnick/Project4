@@ -1,4 +1,7 @@
 // Nick Stelzer
+// July 26, 2012
+// Project 4
+// Function Library
 
 // Does a string follow a 123-456-7890 pattern like a phone number?
 var isValidPhoneNumber = function (string) {
@@ -111,7 +114,7 @@ var swapSeparator = function (list, curSep, newSep) {
 	// Create dynamic reg exp
 	var re = new RegExp(curSep,"g");
 	list = list.replace(re, newSep);
-	return list;
+	return list;					
 }
 
 // Format a number to use a specific number of decimal places, as for money: 2.1 → 2.10
@@ -182,11 +185,11 @@ var totalArrayNums = function (array) {
 
 // Given an array of objects and the name of a key, return the array sorted by the value of that key in each of the objects
 var sortArrayByKey = function (array, key) {
-	var compareFunction = function (a, b) {
+	var compareByKey = function (a, b) {
 		var x = a[key]; var y = b[key];
 		return x - y;
 	}
-	array.sort(compareFunction);	
+	array.sort(compareByKey);	
 	return array;
 }
 
